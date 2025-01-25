@@ -1,9 +1,9 @@
-package service;
+package stockservice.service;
 
-import entity.User;
+import stockservice.entity.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import repository.UserRepository;
+import stockservice.repository.UserRepository;
 
 @Service
 public class UserService {

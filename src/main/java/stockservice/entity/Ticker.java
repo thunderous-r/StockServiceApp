@@ -1,9 +1,15 @@
-package entity;
+package stockservice.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "tickers")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Builder
 public class Ticker {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,5 +20,4 @@ public class Ticker {
 
     private String name;
 
-    // Getters and setters
 }

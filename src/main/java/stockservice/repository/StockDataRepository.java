@@ -1,6 +1,6 @@
-package repository;
+package stockservice.repository;
 
-import entity.Ticker;
+import stockservice.entity.Ticker;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,7 +1,7 @@
-package repository;
+package stockservice.repository;
 
-import entity.StockData;
-import entity.User;
+import stockservice.entity.StockData;
+import stockservice.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

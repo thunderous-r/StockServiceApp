@@ -1,11 +1,17 @@
-package entity;
+package stockservice.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "stock_data")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Getter
 public class StockData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,5 +32,4 @@ public class StockData {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    //getters setters
 }
