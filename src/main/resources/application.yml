@@ -1,8 +1,10 @@
 spring:
+  config:
+    import: "application-secrets.yml"
   datasource:
     url: jdbc:postgresql://localhost:5432/stockdb
-    username: postgres
-    password: postgres
+    username: ${db.username}
+    password: ${db.password}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
