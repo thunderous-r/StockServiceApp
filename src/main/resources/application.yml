@@ -8,5 +8,9 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
     show-sql: true
+  security:
+    jwt:
+      secret: ${jwt.secret}
+      expiration: ${jwt.expiration}
