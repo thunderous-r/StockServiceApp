@@ -1,8 +1,10 @@
 package stockservice.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 import stockservice.entity.StockData;
 import stockservice.service.StockDataService;
 
@@ -35,5 +37,10 @@ public class StockDataController {
     public ResponseEntity<?> deleteStock(@PathVariable Long id) {
         stockDataService.deleteStockData(id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/price/{ticker}")
+    public Mono<JsonNode> getStockPrice(@PathVariable String ticker) {
+        return stockDataService.fetchLatestStockPrice(ticker);
     }
 }

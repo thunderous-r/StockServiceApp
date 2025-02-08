@@ -1,6 +1,8 @@
 package stockservice.service;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 import stockservice.entity.StockData;
 import stockservice.repository.StockDataRepository;
 
@@ -9,7 +11,10 @@ import java.util.List;
 @Service
 public class StockDataService {
     private final StockDataRepository stockDataRepository;
-    public StockDataService(StockDataRepository stockDataRepository) {
+    private final PolygonStockService polygonStockService;
+
+    public StockDataService(StockDataRepository stockDataRepository, PolygonStockService polygonStockService) {
+        this.polygonStockService = polygonStockService;
         this.stockDataRepository = stockDataRepository;
     }
     public List<StockData> getAllStockData() {
@@ -27,5 +32,9 @@ public class StockDataService {
 
     public void deleteStockData(Long id) {
         stockDataRepository.deleteById(id);
+    }
+
+    public Mono<JsonNode> fetchLatestStockPrice(String ticker) {
+        return polygonStockService.getStockPrice(ticker);
     }
 }
