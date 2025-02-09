@@ -14,13 +14,12 @@ public class PolygonStockService {
     private String apiKey;
 
     public PolygonStockService(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.build();
+        this.webClient = webClientBuilder.baseUrl("https://api.polygon.io").build();
     }
 
     public Mono<JsonNode> getStockPrice(String ticker) {
         return webClient.get()
-                .uri("https://api.polygon.io/v2/aggs/ticker/{ticker}/prev", ticker)
-                .header("Authorization", "Bearer " + apiKey)
+                .uri("/v2/aggs/ticker/" + ticker + "/prev?apiKey=" + apiKey)
                 .retrieve()
                 .bodyToMono(JsonNode.class);
     }

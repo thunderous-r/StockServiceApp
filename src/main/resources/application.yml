@@ -16,3 +16,6 @@ spring:
       expiration: ${jwt.expiration}
   polygon:
     api-key: ${api.polygon.key}
+  logging:
+    level:
+      org.springframework.security: DEBUG

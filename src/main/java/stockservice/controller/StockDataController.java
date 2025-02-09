@@ -3,6 +3,9 @@ package stockservice.controller;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 import stockservice.entity.StockData;
@@ -14,12 +17,15 @@ import java.util.List;
 @RequestMapping("/api/stocks")
 public class StockDataController {
     private final StockDataService stockDataService;
+
     public StockDataController(StockDataService stockDataService) {
         this.stockDataService = stockDataService;
     }
 
-    @GetMapping
+    @GetMapping()
     public List<StockData> getAllStocks() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println("Current Auth: " + auth);
         return stockDataService.getAllStockData();
     }
 
@@ -43,4 +49,5 @@ public class StockDataController {
     public Mono<JsonNode> getStockPrice(@PathVariable String ticker) {
         return stockDataService.fetchLatestStockPrice(ticker);
     }
+
 }

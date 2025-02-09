@@ -14,12 +14,14 @@ public class StockDataService {
     private final PolygonStockService polygonStockService;
 
     public StockDataService(StockDataRepository stockDataRepository, PolygonStockService polygonStockService) {
-        this.polygonStockService = polygonStockService;
         this.stockDataRepository = stockDataRepository;
+        this.polygonStockService = polygonStockService;
     }
+
     public List<StockData> getAllStockData() {
         return stockDataRepository.findAll();
     }
+
     public List<StockData> getStockDataByTicker(String ticker) {
         return stockDataRepository.findAll().stream()
                 .filter(stock -> stock.getTicker().equalsIgnoreCase(ticker))
