@@ -14,7 +14,7 @@ import stockservice.service.StockDataService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/stocks")
+@RequestMapping({"/api/stocks", "/api/stocks/"})
 public class StockDataController {
     private final StockDataService stockDataService;
 
